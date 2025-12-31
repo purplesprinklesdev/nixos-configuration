@@ -195,6 +195,7 @@
     vim-full
     fastfetch
     nautilus
+    gnome-software # flatpak Software Center
 
     zed-editor
     brave

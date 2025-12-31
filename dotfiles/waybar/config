@@ -111,7 +111,7 @@
     "menu": "on-click",
     "menu-file": "$HOME/.sysflake/dotfiles/waybar/power_menu.xml",
     "menu-actions": {
-      "lock": "swayidle timeout 1 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' &; swaylock; kill %%",
+      "lock": "./lockman.sh",
       "shutdown": "shutdown -h now",
       "reboot": "reboot",
       "suspend": "systemctl suspend"
