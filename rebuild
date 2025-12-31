@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Would you like to run garbage collection?"
+read -e ans
+if [ $ans = y ]; then
+	sudo nix-collect-garbage --delete-older-than 15d
+	echo "Old Generations removed"
+fi
+
+git diff -U0 *.nix
+
+echo "NixOS Rebuilding..."
+
+sudo nixos-rebuild switch --flake . &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+
+echo "Rebuild Success!"
+echo "Would you like to commit?"
+read -e ans
+if [ $ans = y ]; then
+	echo "Commit name:"
+	read -e name
+	git commit -am "$name"
+fi
+
+nixos-rebuild list-generations | cat
