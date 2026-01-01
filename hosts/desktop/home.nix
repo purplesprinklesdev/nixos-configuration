@@ -60,7 +60,7 @@
       # New Keybindings
       modifier = "Mod1";
       keybindings = let mod = "Mod1"; in pkgs.lib.mkOptionDefault {
-        "${mod}+space" = "exec pkill wofi || wofi --show drun";
+        "${mod}+Return" = "exec pkill wofi || wofi --show drun";
         "${mod}+d" = "exec pkill wofi || wofi --show drun";
         "${mod}+t" = "exec alacritty";
         "${mod}+b" = "exec brave";
@@ -70,6 +70,8 @@
         "${mod}+Shift+f" = "fullscreen toggle";
         "${mod}+w" = "exec pkill waybar || waybar";
         "Print" = ''exec grim -g "$(slurp)" - | swappy -f -'';
+        "XF86Calculator" = ''exec gnome-calculator'';
+        "Super_L" = "exec pkill wofi || wofi --show drun";
       }; 
       
       input = {
@@ -196,13 +198,14 @@
     fastfetch
     nautilus
     gnome-software # flatpak Software Center
+    gnome-calculator
 
     zed-editor
     brave
-    
+
     # Gaming only - GE Proton
     protonup-ng
-
+    
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -261,8 +264,8 @@
   let 
     userCol = "#000000";
     userText = "#ffffff";
-    dirCol = "#89b4fa";
-    dirText = "#ffffff";
+    dirCol = "#cba6f7";
+    dirText = "#000000";
   in {
     enable = true;
     settings = {
@@ -285,7 +288,7 @@
       };
       directory = {
         format = "[$path]($style)[$read_only]($style)";
-        style = "bg:${dirCol} fg:${userText}";
+        style = "bg:${dirCol} fg:${dirText}";
       }; 
     };
   };
@@ -342,7 +345,6 @@
   #
   home.sessionVariables = {
     EDITOR = "vim";
-    
     # STEAM PROTON
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };

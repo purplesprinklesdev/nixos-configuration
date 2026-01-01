@@ -14,12 +14,11 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "desktop-nixos"; # Define your hostname.
+  networking.hostName = "laptop-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -92,7 +91,16 @@
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  services.xserver.enable = true;
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      disableWhileTyping = true;
+      tapping = true;
+    };
+  };
+  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.matthew = {
@@ -127,7 +135,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    rocmSupport = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -208,3 +215,4 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
+

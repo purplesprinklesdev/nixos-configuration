@@ -9,7 +9,7 @@ if [ $ans = y ]; then
 	echo "Old Generations removed"
 fi
 
-git diff -U0 *.nix
+git diff -U0 .
 
 echo "NixOS Rebuilding..."
 
