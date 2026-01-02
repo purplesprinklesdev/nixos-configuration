@@ -90,6 +90,12 @@
           accel_profile = "flat";
           pointer_accel = "-0.2";
         };
+        # Touchpad
+        "type:touchpad" = {
+          tap = "enabled";
+          natural_scroll = "enabled";
+          dwt = "enabled";
+        };
       };
 
       # Display device configuration
@@ -106,7 +112,6 @@
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
         { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; always = true; }
-        # { command = "${pkgs.playerctl}/bin/playerctld daemon"; always = true; }
         { command = "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight"; always = true; }
       ];
     };
@@ -202,6 +207,7 @@
     autotiling
     pavucontrol
     brightnessctl
+    libinput
     
     vim-full
     fastfetch

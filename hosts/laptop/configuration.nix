@@ -94,18 +94,6 @@
     "flakes"
   ];
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.enable = true;
-  services.libinput = {
-    enable = true;
-    touchpad = {
-      naturalScrolling = true;
-      disableWhileTyping = true;
-      tapping = true;
-    };
-  };
-  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.matthew = {
     shell = pkgs.bash;

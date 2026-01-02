@@ -100,9 +100,7 @@
       "portable": "",
       "car": "",
       "default": [
-	"󰝟",
-	"󰖀",
-	"󰕾"
+	"󰕿", "󰖀", "󰕾"
       ]
     },
     "on-click": "pkill nmtui; pkill pavucontrol || pavucontrol"
@@ -110,7 +108,8 @@
   "backlight": {
     "device": "intel_backlight",
     "format": "{percent}% 󰃟",
-    "scroll-step": 0.5
+    "scroll-step": 0.5,
+    "tooltip": false
   },
   "custom/power": {
     "format": "⏻",
