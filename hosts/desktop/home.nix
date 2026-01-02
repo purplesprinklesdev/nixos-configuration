@@ -314,11 +314,11 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".config/waybar/config".source = ../../dotfiles/waybar/config;
-    ".config/waybar/style.css".source = ../../dotfiles/waybar/style.css;
+    ".config/waybar/config".source = ./dotfiles/waybar/config;
+    ".config/waybar/style.css".source = ./dotfiles/waybar/style.css;
 
-    ".config/wofi/config".source = ../../dotfiles/wofi/config;
-    ".config/wofi/style.css".source = ../../dotfiles/wofi/style.css;
+    ".config/wofi/config".source = ./dotfiles/wofi/config;
+    ".config/wofi/style.css".source = ./dotfiles/wofi/style.css;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

@@ -70,8 +70,14 @@
         "${mod}+Shift+f" = "fullscreen toggle";
         "${mod}+w" = "exec pkill waybar || waybar";
         "Print" = ''exec grim -g "$(slurp)" - | swappy -f -'';
-        "XF86Calculator" = ''exec gnome-calculator'';
         "Super_L" = "exec pkill wofi || wofi --show drun";
+        "XF86Calculator" = ''exec gnome-calculator'';
+        "XF86AudioMute" = ''exec pactl set-sink-mute @DEFAULT_SINK@ toggle'';
+        "XF86AudioLowerVolume" = ''exec pactl set-sink-volume @DEFAULT_SINK@ -15%'';
+        "XF86AudioRaiseVolume" = ''exec pactl set-sink-volume @DEFAULT_SINK@ +15%'';
+        "XF86MonBrightnessUp" = ''exec brightnessctl set 10%+'';
+        "XF86MonBrightnessDown" = ''exec brightnessctl set 10%-'';
+        "XF86AudioPlay" = ''exec playerctl play-pause'';
       }; 
       
       input = {
@@ -100,6 +106,8 @@
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
         { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; always = true; }
+        # { command = "${pkgs.playerctl}/bin/playerctld daemon"; always = true; }
+        { command = "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight"; always = true; }
       ];
     };
     # Floating windows for waybar apps
@@ -193,6 +201,7 @@
     sway-audio-idle-inhibit
     autotiling
     pavucontrol
+    brightnessctl
     
     vim-full
     fastfetch
@@ -311,11 +320,11 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".config/waybar/config".source = ../../dotfiles/waybar/config;
-    ".config/waybar/style.css".source = ../../dotfiles/waybar/style.css;
+    ".config/waybar/config".source = ./dotfiles/waybar/config;
+    ".config/waybar/style.css".source = ./dotfiles/waybar/style.css;
 
-    ".config/wofi/config".source = ../../dotfiles/wofi/config;
-    ".config/wofi/style.css".source = ../../dotfiles/wofi/style.css;
+    ".config/wofi/config".source = ./dotfiles/wofi/config;
+    ".config/wofi/style.css".source = ./dotfiles/wofi/style.css;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

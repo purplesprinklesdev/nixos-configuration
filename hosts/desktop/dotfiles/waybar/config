@@ -109,9 +109,9 @@
     "format": "⏻",
     "tooltip": false,
     "menu": "on-click",
-    "menu-file": "$HOME/.sysflake/dotfiles/waybar/power_menu.xml",
+    "menu-file": "$HOME/.sysflake/shared/power_menu.xml",
     "menu-actions": {
-      "lock": "./lockman.sh",
+      "lock": "$HOME/.sysflake/shared/lockman.sh",
       "shutdown": "shutdown -h now",
       "reboot": "reboot",
       "suspend": "systemctl suspend"

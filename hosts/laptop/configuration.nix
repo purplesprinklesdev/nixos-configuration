@@ -85,6 +85,10 @@
     #media-session.enable = true;
   };
 
+  # Media control 
+  programs.dconf.enable = true;
+  services.playerctld.enable = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
