@@ -86,13 +86,14 @@
     #media-session.enable = true;
   };
 
+  # Media control
+  programs.dconf.enable = true;
+  services.playerctld.enable = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.matthew = {

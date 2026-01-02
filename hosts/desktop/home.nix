@@ -70,8 +70,12 @@
         "${mod}+Shift+f" = "fullscreen toggle";
         "${mod}+w" = "exec pkill waybar || waybar";
         "Print" = ''exec grim -g "$(slurp)" - | swappy -f -'';
-        "XF86Calculator" = ''exec gnome-calculator'';
         "Super_L" = "exec pkill wofi || wofi --show drun";
+        "XF86Calculator" = ''exec gnome-calculator'';
+        "XF86AudioMute" = ''exec pactl set-sink-mute @DEFAULT_SINK@ toggle'';
+        "XF86AudioLowerVolume" = ''exec pactl set-sink-volume @DEFAULT_SINK@ -15%'';
+        "XF86AudioRaiseVolume" = ''exec pactl set-sink-volume @DEFAULT_SINK@ +15%'';
+        "XF86AudioPlay" = ''exec playerctl play-pause'';
       }; 
       
       input = {
