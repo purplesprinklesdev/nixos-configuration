@@ -121,13 +121,13 @@
         floating enable
         resize set height 600px
         resize set width 600px
-        move up 210px
+        move up 280px
       }
       for_window [app_id="nmwui"] {
         floating enable
         resize set height 600px
         resize set width 800px
-        move up 210px
+        move up 280px
       }
     '';
   };
