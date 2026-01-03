@@ -10,7 +10,8 @@
 
   "modules-left": [
     "sway/workspaces",
-    "tray"
+    "tray",
+    "mpd"
   ],
   "modules-center": [
     "clock"
@@ -18,6 +19,7 @@
   "modules-right": [
     "network",
     "pulseaudio",
+    "power-profiles-daemon",
     "backlight",
     "battery",
     "custom/power"

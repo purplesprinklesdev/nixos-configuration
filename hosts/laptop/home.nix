@@ -133,9 +133,9 @@
   };
   programs.swayimg.enable = true;
 
-  programs.swaylock = {
-    enable = true;
-  };
+  programs.swaylock.enable = true;
+
+  
   # Idling config
   services.swayidle =
   let

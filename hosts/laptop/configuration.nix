@@ -156,6 +156,12 @@
   # List services that you want to enable:
 
   services.flatpak.enable = true;
+  
+  # Power efficiency
+  services.power-profiles-daemon.enable = true;
+
+  # VM
+
   services.kresd.enable = false;
   services.resolved.enable = true;
 
@@ -175,6 +181,8 @@
     };
   };
 
+  # FONTS
+
   fonts.packages = with pkgs; [
     powerline-fonts
     noto-fonts-cjk-sans
@@ -185,9 +193,33 @@
     helvetica-neue-lt-std
   ]; 
 
-  # security.pam.services.swaylock = {
-  #   text = "auth include login";
-  # };
+  # SECURITY and FINGERPRINT
+
+  # Fingerprint Sensor
+  services.fprintd.enable = true;
+
+  # For ELAN sensors, you might need the TOD driver
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-elan;
+
+  security.pam.services = {
+    login.fprintAuth = true;
+    sudo.fprintAuth = true;
+    swaylock = {};
+    swaylock.fprintAuth = true;
+    greetd.fprintAuth = true;
+
+    greetd.enableGnomeKeyring = true;
+  };
+
+  # HW BUTTON BEHAVIOR
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+    HandleLidSwitchDocked = "suspend";
+    HandlePowerKey = "suspend";
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
