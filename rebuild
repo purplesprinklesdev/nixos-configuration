@@ -5,7 +5,9 @@ set -e
 echo "Would you like to run garbage collection?"
 read -e ans
 if [ $ans = y ]; then
-	sudo nix-collect-garbage --delete-older-than 15d
+	echo "Delete older than how many days?"
+	read -e days
+	nix-collect-garbage --delete-older-than ${days}d
 	echo "Old Generations removed"
 fi
 
@@ -13,7 +15,8 @@ git diff -U0 .
 
 echo "NixOS Rebuilding..."
 
-sudo nixos-rebuild switch --flake . &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+
+nixos-rebuild switch --flake . &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 
 echo "Rebuild Success!"
 echo "Would you like to commit?"
