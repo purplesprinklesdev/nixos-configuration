@@ -58,8 +58,6 @@
     theme.name = "Adwaita";
   };
 
-  services.gnome.gnome-keyring.enable = true;
-
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -95,11 +93,12 @@
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.groups.storage = {};
   users.users.matthew = {
     shell = pkgs.bash;
     isNormalUser = true;
     description = "Matthew";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "storage" ];
   };
 
   home-manager = {
@@ -163,6 +162,32 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
+
+  # Automount to drives
+  boot.supportedFilesystems = [ "ntfs" ];
+  services.udisks2.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      var YES = polkit.Result.YES;
+      // NOTE: there must be a comma at the end of each line except for the last:
+      var permission = {
+        // required for udisks2:
+        "org.freedesktop.udisks2.filesystem-mount": YES,
+        "org.freedesktop.udisks2.encrypted-unlock": YES,
+        "org.freedesktop.udisks2.eject-media": YES,
+        "org.freedesktop.udisks2.power-off-drive": YES,
+        // required for udisks2 if using udiskie from another seat (e.g. systemd):
+        "org.freedesktop.udisks2.filesystem-mount-other-seat": YES,
+        "org.freedesktop.udisks2.filesystem-unmount-others": YES,
+        "org.freedesktop.udisks2.encrypted-unlock-other-seat": YES,
+        "org.freedesktop.udisks2.eject-media-other-seat": YES,
+        "org.freedesktop.udisks2.power-off-drive-other-seat": YES
+      };
+      if (subject.isInGroup("storage")) {
+        return permission[action.id];
+      }
+    });
+  '';
   
   # Power efficiency
   services.power-profiles-daemon.enable = true;
@@ -209,14 +234,26 @@
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-elan;
 
+  services.gnome.gnome-keyring.enable = true;
+
   security.pam.services = {
     login.fprintAuth = true;
+    login.enableGnomeKeyring = true;
+
     sudo.fprintAuth = true;
+
     swaylock = {};
     swaylock.fprintAuth = true;
-    greetd.fprintAuth = true;
 
-    greetd.enableGnomeKeyring = true;
+    greetd = {
+      fprintAuth = true;
+      enableGnomeKeyring = true;
+      text = ''
+        auth optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
+        session optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
+        password optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so      
+      '';
+    };
   };
 
   # HW BUTTON BEHAVIOR
@@ -228,6 +265,10 @@
     HandlePowerKey = "suspend";
   };
 
+  # SAMBA
+
+  services.gvfs.enable = true;
+  
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 

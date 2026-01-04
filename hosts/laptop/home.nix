@@ -113,6 +113,7 @@
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
         { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; always = true; }
         { command = "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight"; always = true; }
+        { command = "dbus-update-activation-environment --all"; always = true; }
       ];
     };
     # Floating windows for waybar apps
@@ -124,6 +125,12 @@
         move up 280px
       }
       for_window [app_id="nmwui"] {
+        floating enable
+        resize set height 600px
+        resize set width 800px
+        move up 280px
+      }
+      for_window [app_id=".blueman-manager-wrapped"] {
         floating enable
         resize set height 600px
         resize set width 800px
@@ -189,6 +196,16 @@
     enable = true;
   };
 
+  # Automount to External Drives
+  services.udiskie = {
+    enable = true;
+    settings = {
+      program_options = {
+        file_manager = "${pkgs.nautilus}/bin/nautilus";
+      };
+    };
+  };
+
   # Reset GTK font bc home-manager changed it
   gtk.font.size = lib.mkForce 10;
   dconf.settings."org/gnome/desktop/interface".font-name = lib.mkForce "Arimo Nerd Font 10";
@@ -208,6 +225,8 @@
     pavucontrol
     brightnessctl
     libinput
+    gparted
+    blueman
     
     vim-full
     fastfetch

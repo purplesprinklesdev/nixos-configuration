@@ -104,6 +104,7 @@
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
         { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; always = true; }
+        { command = "dbus-update-activation-environment --all"; always = true; }
       ];
     };
     # Floating windows for waybar apps

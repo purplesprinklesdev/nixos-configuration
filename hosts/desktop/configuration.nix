@@ -28,6 +28,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  services.gvfs.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -59,7 +60,12 @@
     theme.name = "Adwaita";
   };
 
+  # Keyring
   services.gnome.gnome-keyring.enable = true;
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
+  };
 
   programs.sway = {
     enable = true;
