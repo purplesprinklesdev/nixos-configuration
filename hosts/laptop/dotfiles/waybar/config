@@ -88,7 +88,7 @@
     "tooltip-format": "{ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "⚠",
-    "on-click": "pkill pavucontrol; pkill nmtui || alacritty --class nmwui -e nmtui"
+    "on-click": "pkill blueman; pkill pavucontrol; pkill nmtui || alacritty --class nmwui -e nmtui"
   },
   "bluetooth": {
     "format": " {status}",
@@ -101,7 +101,7 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "blueman-manager",
+    "on-click": "pkill nmtui; pkill pavucontrol; pkill blueman || blueman-manager",
     "on-click-right": "blueman-applet",
     "on-scroll-up": "bluetoothctl power on",
     "on-scroll-down": "bluetoothctl power off",
@@ -123,7 +123,7 @@
 	"󰕿", "󰖀", "󰕾"
       ]
     },
-    "on-click": "pkill nmtui; pkill pavucontrol || pavucontrol"
+    "on-click": "pkill nmtui; pkill blueman; pkill pavucontrol || pavucontrol"
   },
   "backlight": {
     "device": "intel_backlight",
