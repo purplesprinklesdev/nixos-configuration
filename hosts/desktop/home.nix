@@ -121,13 +121,19 @@
         resize set width 800px
         move up 210px
       }
+      for_window [app_id=".blueman-manager-wrapped"] {
+        floating enable
+        resize set height 600px
+        resize set width 800px
+        move up 210px
+      }
     '';
   };
+
   programs.swayimg.enable = true;
 
-  programs.swaylock = {
-    enable = true;
-  };
+  programs.swaylock.enable = true;  
+
   # Idling config
   services.swayidle =
   let
@@ -181,6 +187,16 @@
     enable = true;
   };
 
+  # Automount to External Drives
+  services.udiskie = {
+    enable = true;
+    settings = {
+      program_options = {
+        file_manager = "${pkgs.nautilus}/bin/nautilus";
+      };
+    };
+  };
+
   # Reset GTK font bc home-manager changed it
   gtk.font.size = lib.mkForce 10;
   dconf.settings."org/gnome/desktop/interface".font-name = lib.mkForce "Arimo Nerd Font 10";
@@ -198,6 +214,8 @@
     sway-audio-idle-inhibit
     autotiling
     pavucontrol
+    gparted
+    blueman
     
     vim-full
     fastfetch
