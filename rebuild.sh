@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# RUN AS SUDO
 
 set -e
 
@@ -11,7 +12,7 @@ if [ $ans = y ]; then
 	echo "Old Generations removed"
 fi
 
-git diff -U0 .
+sudo -u $SUDO_USER git diff -U0 .
 
 echo "NixOS Rebuilding..."
 
@@ -24,7 +25,7 @@ read -e ans
 if [ $ans = y ]; then
 	echo "Commit name:"
 	read -e name
-	git commit -am "$name"
+	sudo -u $SUDO_USER git commit -am "$name"
 fi
 
-nixos-rebuild list-generations | cat
+sudo -u $SUDO_USER nixos-rebuild list-generations | cat
