@@ -234,26 +234,16 @@
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-elan;
 
-  services.gnome.gnome-keyring.enable = true;
 
   security.pam.services = {
     login.fprintAuth = true;
-    login.enableGnomeKeyring = true;
 
     sudo.fprintAuth = true;
 
     swaylock = {};
     swaylock.fprintAuth = true;
 
-    greetd = {
-      fprintAuth = true;
-      enableGnomeKeyring = true;
-      text = ''
-        auth optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
-        session optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
-        password optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so      
-      '';
-    };
+    greetd.fprintAuth = true;  
   };
 
   # HW BUTTON BEHAVIOR
