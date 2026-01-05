@@ -26,7 +26,21 @@
 
   swapDevices = [ ];
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+    settings = {
+      General = {
+        ControllerMode = "bredr";
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = false;
+      };
+    };
+  };
+
   hardware.graphics.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
