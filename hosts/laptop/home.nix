@@ -227,6 +227,7 @@
     libinput
     gparted
     blueman
+    keychain
     
     vim-full
     fastfetch
@@ -326,7 +327,12 @@
 
   programs.bash = {
     enable = true;
-    initExtra = "fastfetch\n";
+    initExtra = ''
+       if command -v keychain > /dev/null 2>&1
+         then eval $(keychain --eval --nogui /home/matthew/.ssh/id_rsa --quiet)
+       fi
+       fastfetch
+     '';
   };
 
   programs.git = {
