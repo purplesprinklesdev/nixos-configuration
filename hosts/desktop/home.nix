@@ -333,6 +333,7 @@
       user.name = "purplesprinklesdev";
       user.email = "ought-impale-doozy@duck.com";
       init.defaultBranch = "main";
+      gpg.format = "ssh";
     };
   };
 

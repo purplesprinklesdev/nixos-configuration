@@ -26,7 +26,7 @@ if [ $ans = y ]; then
 	echo "Commit name:"
 	read -e name
 	gen="$(nixos-rebuild list-generations | grep True | awk '{print $1;}')"
-	sudo -u $SUDO_USER git commit -am "$name - $HOSTNAME Gen $gen"
+	sudo -u $SUDO_USER git commit -S -am "$name - $HOSTNAME Gen $gen"
 fi
 
 sudo -u $SUDO_USER nixos-rebuild list-generations | cat
