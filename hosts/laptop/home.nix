@@ -328,7 +328,7 @@
     enable = true;
     initExtra = ''
        if command -v keychain > /dev/null 2>&1
-         then eval $(keychain --eval --nogui /home/matthew/.ssh/id_rsa --quiet)
+         then eval $(keychain --eval --nogui /home/matthew/.ssh/id_ed25519 --quiet)
        fi
        fastfetch
      '';
