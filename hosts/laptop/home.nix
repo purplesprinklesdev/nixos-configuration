@@ -215,7 +215,6 @@
   home.packages = with pkgs; [
     grim
     slurp
-    swappy
     wl-clipboard
     wofi
     waybar
@@ -342,6 +341,16 @@
       user.email = "ought-impale-doozy@duck.com";
       init.defaultBranch = "main";
       gpg.format = "ssh";
+    };
+  };
+
+  programs.swappy = {
+    enable = true;
+    settings = {
+      Default = {
+        save_dir = "$HOME/Pictures/Screenshots";
+        save_filename_format = "%Y-%m-%d %H-%M-%S.png";
+      };
     };
   };
 
