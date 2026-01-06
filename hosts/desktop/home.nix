@@ -209,17 +209,20 @@
     wl-clipboard
     wofi
     waybar
+
     swaybg
     sway-audio-idle-inhibit
     autotiling
-    pavucontrol
-    gparted
+
     blueman
     keychain
-    
+    pavucontrol
+
+    gparted
+    gdu
     vim-full
     fastfetch
-    nautilus
+    nautilus # File manager
     gnome-software # flatpak Software Center
     gnome-calculator
 
