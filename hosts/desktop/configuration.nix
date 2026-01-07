@@ -220,6 +220,9 @@
     });
   '';
 
+  # Peripherals Battery Reporting
+  services.upower.enable = true;
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 

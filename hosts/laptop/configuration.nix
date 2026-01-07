@@ -258,6 +258,10 @@
   # SAMBA
 
   services.gvfs.enable = true;
+
+  # Wireless devices battery
+
+  services.upower.enable = true;
   
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
