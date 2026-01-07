@@ -142,6 +142,7 @@
 	virt-manager
         btop-rocm
         psmisc
+        usbutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
