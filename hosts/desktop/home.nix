@@ -322,6 +322,9 @@
   programs.bash = {
     enable = true;
     initExtra = ''
+      PATH="$HOME/.local/bin:$PATH"
+
+      export PATH
       fastfetch
     '';
   };
