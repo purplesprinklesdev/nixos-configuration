@@ -109,6 +109,8 @@
     };
     # Floating windows for waybar apps
     extraConfig = ''
+      output * adaptive_sync on
+
       for_window [app_id="org.pulseaudio.pavucontrol"] {
         floating enable
         resize set height 600px
