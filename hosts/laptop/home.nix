@@ -330,7 +330,7 @@
     initExtra = ''
       PATH="$HOME/.local/bin:$PATH"
       export PATH
-      eval "$(keychain --eval id_ed25519)"
+      eval "$(keychain --eval id_ed25519 --quiet)"
       fastfetch
     '';
   };
