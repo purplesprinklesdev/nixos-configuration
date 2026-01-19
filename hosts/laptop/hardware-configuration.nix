@@ -35,7 +35,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
     settings = {
       General = {
         ControllerMode = "bredr";
@@ -50,4 +50,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 }

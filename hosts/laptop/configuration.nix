@@ -26,7 +26,10 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -63,6 +66,23 @@
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=45m
   '';
+
+  # Wifi after wake fix
+  environment.etc."systemd/system-sleep/rtw89_8852ce".source =
+    pkgs.writeShellScript "rtw89_8852ce-system-sleep" ''
+      #!/bin/sh
+      # args: $1 = pre|post, $2 = suspend|hibernate|suspend-then-hibernate|...
+
+      case "$1/$2" in
+        pre/hibernate|pre/suspend-then-hibernate)
+          ${pkgs.kmod}/bin/modprobe -rv rtw89_8852ce || true
+          ;;
+        post/hibernate|post/suspend-then-hibernate)
+          ${pkgs.kmod}/bin/modprobe -v rtw89_8852ce || true
+          ${pkgs.systemd}/bin/systemctl restart NetworkManager.service || true
+          ;;
+      esac
+    '';
   # ---- Enable Hibernation ----
 
   # Enable greetd service

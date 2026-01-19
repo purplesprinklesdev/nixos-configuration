@@ -139,9 +139,7 @@
     "menu-actions": {
       "lock": "$HOME/.sysflake/shared/lockman.sh",
       "shutdown": "shutdown -h now",
-      "reboot": "reboot",
-      "suspend": "systemctl suspend-then-hibernate"
-      "hibernate": "systemctl hibernate"
+      "reboot": "reboot"
     }
   }
 }
