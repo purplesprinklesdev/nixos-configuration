@@ -140,8 +140,8 @@
       "lock": "$HOME/.sysflake/shared/lockman.sh",
       "shutdown": "shutdown -h now",
       "reboot": "reboot",
-      "suspend": "systemctl suspend"
-      // "hibernate": "systemctl hibernate"
+      "suspend": "systemctl suspend-then-hibernate"
+      "hibernate": "systemctl hibernate"
     }
   }
 }

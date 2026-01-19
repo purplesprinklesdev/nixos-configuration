@@ -46,6 +46,25 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # ---- Enable Hibernation ----
+  boot.kernelParams = ["resume_offset=242839552"];
+
+  boot.resumeDevice = "/dev/disk/by-uuid/15bf51f6-5e1b-4b6f-a7bf-d1016d6919d3";
+
+  powerManagement.enable = true;
+
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024; # 32GB
+    }
+  ];
+
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=45m
+  '';
+  # ---- Enable Hibernation ----
+
   # Enable greetd service
   services.greetd.enable = true;
 
@@ -250,10 +269,10 @@
   # HW BUTTON BEHAVIOR
 
   services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "suspend";
-    HandleLidSwitchDocked = "suspend";
-    HandlePowerKey = "suspend";
+    HandleLidSwitch = "suspend-then-hibernate";
+    HandleLidSwitchExternalPower = "suspend-then-hibernate";
+    HandleLidSwitchDocked = "suspend-then-hibernate";
+    HandlePowerKey = "hibernate";
   };
 
   # SAMBA
