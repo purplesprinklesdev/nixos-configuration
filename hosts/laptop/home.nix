@@ -235,7 +235,7 @@
     gnome-software # flatpak Software Center
     gnome-calculator
 
-    zed-editor
+    
     brave
     
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -353,6 +353,16 @@
         save_dir = "$HOME/Pictures/Screenshots";
         save_filename_format = "%Y-%m-%d %H-%M-%S.png";
       };
+    };
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    userSettings = {
+        features = {
+          copilot = false;
+        };
+        vim_mode = true;
     };
   };
 
