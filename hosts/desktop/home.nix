@@ -327,6 +327,7 @@
       PATH="$HOME/.local/bin:$PATH"
       export PATH
       eval "$(keychain --eval id_rsa --quiet)"
+      clear;
       fastfetch
     '';
   };
