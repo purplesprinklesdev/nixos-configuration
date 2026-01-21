@@ -228,7 +228,6 @@
     gnome-software # flatpak Software Center
     gnome-calculator
 
-    zed-editor
     brave
 
     # Gaming only - GE Proton
@@ -349,6 +348,16 @@
         save_dir = "$HOME/Pictures/Screenshots";
         save_filename_format = "%Y-%m-%d %H-%M-%S.png";
       };
+    };
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    userSettings = {
+      features = {
+        copilot = false;
+      };
+      vim-mode = true;
     };
   };
 
