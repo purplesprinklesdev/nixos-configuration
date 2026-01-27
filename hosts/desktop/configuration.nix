@@ -101,12 +101,18 @@
     "flakes"
   ];
 
+  # Flipper Zero
+  users.groups.flipper = {};
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="5740", GROUP="flipper", MODE="0660"
+  '';
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.matthew = {
     shell = pkgs.bash;
     isNormalUser = true;
     description = "Matthew";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "flipper" "dialout" ];
   };
 
   home-manager = {
