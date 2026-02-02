@@ -321,6 +321,7 @@
       directory = {
         format = "[$path]($style)[$read_only]($style)";
         style = "bg:${dirCol} fg:${dirText}";
+        truncation_length = 0;
       }; 
     };
   };
