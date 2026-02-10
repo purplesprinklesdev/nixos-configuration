@@ -234,6 +234,7 @@
     nautilus # File manager
     gnome-software # flatpak Software Center
     gnome-calculator
+    qrrs
 
     
     brave
