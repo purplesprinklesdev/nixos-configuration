@@ -114,6 +114,7 @@
         { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; always = true; }
         { command = "${pkgs.brightnessctl}/bin/brightnessctl -d intel_backlight"; always = true; }
         { command = "dbus-update-activation-environment --all"; always = true; }
+        { command = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets"; always = false; }
       ];
     };
     # Floating windows for waybar apps

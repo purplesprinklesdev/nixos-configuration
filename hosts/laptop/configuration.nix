@@ -295,6 +295,7 @@
     swaylock.fprintAuth = true;
 
     greetd.fprintAuth = true;  
+    greetd.enableGnomeKeyring = true;
   };
 
   # HW BUTTON BEHAVIOR
