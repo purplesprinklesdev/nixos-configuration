@@ -159,6 +159,8 @@
   # Run dynamically linked binaries 
   programs.nix-ld.enable = true;
 
+  services.fwupd.enable = true;
+
   # STYLIX
   stylix = {
     enable = true;
@@ -280,9 +282,12 @@
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-elan;
 
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true; # GUI for managing keyring
 
   security.pam.services = {
     login.fprintAuth = true;
+    login.enableGnomeKeyring = true;
 
     sudo.fprintAuth = true;
 
