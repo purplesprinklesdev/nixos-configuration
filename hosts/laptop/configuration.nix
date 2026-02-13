@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
@@ -294,8 +294,16 @@
     swaylock = {};
     swaylock.fprintAuth = true;
 
-    greetd.fprintAuth = true;  
-    greetd.enableGnomeKeyring = true;
+    greetd = {
+      fprintAuth = true;
+      enableGnomeKeyring = true;
+      text = lib.mkDefault (lib.mkAfter ''
+        auth substack login
+        account include login
+        password substack login
+        session include login
+      '');
+    };
   };
 
   # HW BUTTON BEHAVIOR
