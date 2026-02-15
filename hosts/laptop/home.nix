@@ -335,9 +335,12 @@
     initExtra = ''
       PATH="$HOME/.local/bin:$PATH"
       export PATH
-      eval "$(keychain --eval id_ed25519 --quiet)"
-      clear;
-      fastfetch
+
+      if [[ "$TERM_PROGRAM" != "zed" ]]; then
+        eval "$(keychain --eval id_ed25519 --quiet)"
+        clear;
+        fastfetch
+      fi
     '';
   };
 
