@@ -364,10 +364,13 @@
   programs.zed-editor = {
     enable = true;
     userSettings = {
-        features = {
-          copilot = false;
+      vim_mode = true;
+      terminal = {
+        font_family = "DejaVu Sans Mono for Powerline";
+        shell = {
+          program = "bash";
         };
-        vim_mode = true;
+      };
     };
   };
 

@@ -331,9 +331,12 @@
     initExtra = ''
       PATH="$HOME/.local/bin:$PATH"
       export PATH
-      eval "$(keychain --eval id_rsa --quiet)"
-      clear;
-      fastfetch
+
+      if [[ "$TERM_PROGRAM" != "zed" ]]; then
+        eval "$(keychain --eval id_rsa --quiet)"
+        clear;
+        fastfetch
+      fi
     '';
   };
 
@@ -360,10 +363,13 @@
   programs.zed-editor = {
     enable = true;
     userSettings = {
-      features = {
-        copilot = false;
+      vim_mode = true;
+      terminal = {
+        font_family = "DejaVu Sans Mono for Powerline";
+        shell = {
+          program = "bash";
+        };
       };
-      vim-mode = true;
     };
   };
 
