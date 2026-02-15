@@ -61,7 +61,7 @@
       modifier = "Mod1";
       keybindings = let mod = "Mod1"; in pkgs.lib.mkOptionDefault {
         "${mod}+Return" = "exec pkill wofi || wofi --show drun";
-        "${mod}+d" = "exec pkill wofi || wofi --show drun";
+        "${mod}+d" = "exec :";
         "${mod}+t" = "exec alacritty";
         "${mod}+b" = "exec brave";
         "${mod}+z" = "exec zeditor";

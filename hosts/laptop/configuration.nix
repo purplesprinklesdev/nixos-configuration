@@ -297,12 +297,6 @@
     greetd = {
       fprintAuth = true;
       enableGnomeKeyring = true;
-      text = lib.mkDefault (lib.mkAfter ''
-        auth substack login
-        account include login
-        password substack login
-        session include login
-      '');
     };
   };
 
