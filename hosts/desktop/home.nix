@@ -229,6 +229,7 @@
     gnome-calculator
 
     brave
+    obs-studio
 
     # Gaming only - GE Proton
     protonup-ng

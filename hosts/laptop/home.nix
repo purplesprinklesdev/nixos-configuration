@@ -238,6 +238,7 @@
 
     
     brave
+    obs-studio
 
     # Flipper Zero
     qFlipper
