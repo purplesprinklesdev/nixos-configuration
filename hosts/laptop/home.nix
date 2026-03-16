@@ -75,8 +75,8 @@
         "XF86AudioMute" = ''exec pactl set-sink-mute @DEFAULT_SINK@ toggle'';
         "XF86AudioLowerVolume" = ''exec pactl set-sink-volume @DEFAULT_SINK@ -15%'';
         "XF86AudioRaiseVolume" = ''exec pactl set-sink-volume @DEFAULT_SINK@ +15%'';
-        "XF86MonBrightnessUp" = ''exec brightnessctl set 10%+'';
-        "XF86MonBrightnessDown" = ''exec brightnessctl set 10%-'';
+        "XF86MonBrightnessUp" = ''exec brightnessctl set 5%+'';
+        "XF86MonBrightnessDown" = ''exec brightnessctl set 5%-'';
         "XF86AudioPlay" = ''exec playerctl play-pause'';
       }; 
       
@@ -342,6 +342,8 @@
         clear;
         fastfetch
       fi
+
+      alias open='xdg-open'
     '';
   };
 

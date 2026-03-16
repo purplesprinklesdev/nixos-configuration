@@ -338,6 +338,8 @@
         clear;
         fastfetch
       fi
+
+      alias open='xdg-open'
     '';
   };
 
