@@ -158,6 +158,7 @@
         btop-rocm
         psmisc
         usbutils
+        gparted
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -204,6 +205,7 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
   services.udisks2.enable = true;
+  security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       var YES = polkit.Result.YES;

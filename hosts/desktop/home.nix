@@ -220,7 +220,6 @@
     keychain
     pavucontrol
 
-    gparted
     gdu
     vim-full
     fastfetch
