@@ -129,6 +129,7 @@
         resize set width 800px
         move up 210px
       }
+      exec wayland-pipewire-idle-inhibit
     '';
   };
 
@@ -213,7 +214,7 @@
     waybar
 
     swaybg
-    sway-audio-idle-inhibit
+    wayland-pipewire-idle-inhibit
     autotiling
 
     blueman

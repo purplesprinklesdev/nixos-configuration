@@ -159,6 +159,8 @@
         psmisc
         usbutils
         gparted
+        # Router TFTP
+        tftp-hpa
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -200,6 +202,28 @@
     roboto
     helvetica-neue-lt-std
   ]; 
+
+  # Router TFTP
+
+  /*
+  networking.interfaces."enp39s0".ipv4.addresses = [
+  {
+    address      = "192.168.0.66";
+    prefixLength = 24;
+  } 
+  ];
+  networking.firewall.allowedUDPPorts = [ 69 ];
+systemd.services.tftpd-hpa = {
+  description = "TFTP Server (tftpd-hpa standalone)";
+  wantedBy    = [ "multi-user.target" ];
+  after       = [ "network.target" ];
+  serviceConfig = {
+    # Removed --address flag — listen on all interfaces on port 69
+    # so the bootloader at 192.168.0.86 is not filtered out
+    ExecStart = "${pkgs.tftp-hpa}/sbin/in.tftpd -l -s /tmp/tftp --address 192.168.0.66:69";
+    Type      = "forking";
+  };
+};*/
 
   # Automount to drives
 
