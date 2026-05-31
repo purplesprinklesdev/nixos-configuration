@@ -159,8 +159,7 @@
         psmisc
         usbutils
         gparted
-        # Router TFTP
-        tftp-hpa
+        tcpdump
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -183,13 +182,6 @@
       package = pkgs.qemu_kvm;
       runAsRoot = true;
       swtpm.enable = true;
-      #ovmf = { # not needed in NixOS 25.11 since https://github.com/NixOS/nixpkgs/pull/421549
-      #  enable = true;
-      #  packages = [(pkgs.OVMF.override {
-      #    secureBoot = true;
-      #    tpmSupport = true;
-      #  }).fd];
-      #};
     };
   };
 
@@ -204,6 +196,7 @@
   ]; 
 
   # Router TFTP
+  # If you ever need TFTP server again, this should work
 
   /*
   networking.interfaces."enp39s0".ipv4.addresses = [
@@ -213,17 +206,19 @@
   } 
   ];
   networking.firewall.allowedUDPPorts = [ 69 ];
-systemd.services.tftpd-hpa = {
-  description = "TFTP Server (tftpd-hpa standalone)";
-  wantedBy    = [ "multi-user.target" ];
-  after       = [ "network.target" ];
-  serviceConfig = {
-    # Removed --address flag — listen on all interfaces on port 69
-    # so the bootloader at 192.168.0.86 is not filtered out
-    ExecStart = "${pkgs.tftp-hpa}/sbin/in.tftpd -l -s /tmp/tftp --address 192.168.0.66:69";
-    Type      = "forking";
+
+  systemd.services.tftpd-hpa = {
+    description = "TFTP Server (tftpd-hpa standalone)";
+    wantedBy    = [ "multi-user.target" ];
+    after       = [ "network.target" ];
+    serviceConfig = {
+      # Removed --address flag — listen on all interfaces on port 69
+      # so the bootloader at 192.168.0.86 is not filtered out
+      ExecStart = "${pkgs.tftp-hpa}/sbin/in.tftpd -l -s /tmp/tftp --address 192.168.0.66:69";
+      Type      = "forking";
+    };
   };
-};*/
+  */
 
   # Automount to drives
 
