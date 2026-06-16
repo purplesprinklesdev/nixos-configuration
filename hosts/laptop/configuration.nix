@@ -63,9 +63,9 @@
     }
   ];
 
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=45m
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "45m";
+  };
 
   # Wifi after wake fix
   environment.etc."systemd/system-sleep/rtw89_8852ce".source =
