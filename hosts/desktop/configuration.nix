@@ -52,12 +52,13 @@
   services.greetd.enable = true;
 
   # Enable regreet (will use Cage automatically)
-  programs.regreet.enable = true;
-
-  # Optionally, configure regreet appearance
-  programs.regreet.settings = {
-    # Example options; see documentation for more
-    theme.name = "Adwaita";
+  programs.regreet = {
+    enable = true;
+    # Fix for multiple monitors
+    cageArgs = [
+      "-m" "last" 
+    ];
+    settings.theme.name = "Adwaita";
   };
 
   # Keyring
@@ -248,6 +249,13 @@
       }
     });
   '';
+
+  # HW BUTTON BEHAVIOR
+
+  services.logind.settings.Login = {
+    HandlePowerKey = "suspend";
+    HandlePowerKeyLongPress = "poweroff";
+  };
 
   # Peripherals Battery Reporting
   services.upower.enable = true;

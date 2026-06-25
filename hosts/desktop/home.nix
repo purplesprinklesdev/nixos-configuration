@@ -149,20 +149,20 @@
     enable = true;
     timeouts = [
       {
-        timeout = 600; # 10 minutes
-        command = "${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds' -t 5000";
+        timeout = 900; # 15 minutes
+        command = "${pkgs.libnotify}/bin/notify-send 'Locking in 20 seconds' -t 20000";
       }
       {
-        timeout = 610;
+        timeout = 920;
         command = display "off";
         resumeCommand = display "on";
       }
       {
-        timeout = 640;
+        timeout = 950;
         command = lock;
       }
       {
-        timeout = 780; # 13 minutes
+        timeout = 1800; # 30 minutes
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
@@ -188,6 +188,14 @@
   };
   services.swaync = {
     enable = true;
+    style = ''
+      .notification-content {
+        min-height: 60px;
+        padding: 10px;
+        font-size: 18pt;
+        border: none;
+      }
+    '';
   };
 
   # Automount to External Drives
