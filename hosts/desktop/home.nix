@@ -97,6 +97,14 @@
           scale = "1";
           # Set res and refresh rate
           mode = "1920x1080@165Hz";
+          pos = "0 0";
+        };
+        DP-2 = {
+          # Set HIDP scale (pixel integer scaling)
+          scale = "1";
+          # Set res and refresh rate
+          mode = "1920x1080@165Hz";
+          pos = "1920 0";
         };
       };
 
@@ -246,6 +254,8 @@
     qFlipper
     
     yt-dlp
+
+    calibre
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
