@@ -121,7 +121,7 @@
     users = {
       "matthew" = import ./home.nix;
     };
-    backupFileExtension = "backup";
+    backupFileExtension = "true";
   };
 
   programs.firefox.enable = false;
