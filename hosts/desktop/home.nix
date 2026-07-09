@@ -97,6 +97,14 @@
           scale = "1";
           # Set res and refresh rate
           mode = "1920x1080@165Hz";
+          pos = "0 0";
+        };
+        DP-2 = {
+          # Set HIDP scale (pixel integer scaling)
+          scale = "1";
+          # Set res and refresh rate
+          mode = "1920x1080@165Hz";
+          pos = "1920 0";
         };
       };
 
@@ -149,20 +157,20 @@
     enable = true;
     timeouts = [
       {
-        timeout = 600; # 10 minutes
-        command = "${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds' -t 5000";
+        timeout = 900; # 15 minutes
+        command = "${pkgs.libnotify}/bin/notify-send 'Locking in 20 seconds' -t 20000";
       }
       {
-        timeout = 610;
+        timeout = 920;
         command = display "off";
         resumeCommand = display "on";
       }
       {
-        timeout = 640;
+        timeout = 950;
         command = lock;
       }
       {
-        timeout = 780; # 13 minutes
+        timeout = 1800; # 30 minutes
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
@@ -188,6 +196,14 @@
   };
   services.swaync = {
     enable = true;
+    style = ''
+      .notification-content {
+        min-height: 60px;
+        padding: 10px;
+        font-size: 18pt;
+        border: none;
+      }
+    '';
   };
 
   # Automount to External Drives
@@ -238,6 +254,8 @@
     qFlipper
     
     yt-dlp
+
+    calibre
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
