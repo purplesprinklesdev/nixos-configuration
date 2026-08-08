@@ -16,10 +16,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, stylix, ... }@inputs: 
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
+    unstable = import inputs.unstable { inherit system; };
+  in 
+  {
     nixosConfigurations.desktop-nixos = nixpkgs.lib.nixosSystem {
       specialArgs = { 
-	inherit inputs;
+	inherit inputs unstable;
       };
       modules = [
         ./hosts/desktop/configuration.nix
@@ -30,7 +36,7 @@
     };
     nixosConfigurations.laptop-nixos = nixpkgs.lib.nixosSystem {
       specialArgs = { 
-	inherit inputs;
+	inherit inputs unstable;
       };
       modules = [
         ./hosts/laptop/configuration.nix

@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, unstable, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -368,12 +368,24 @@
 
   programs.zed-editor = {
     enable = true;
+    package = unstable.zed-editor;
     userSettings = {
       vim_mode = true;
       terminal = {
         font_family = "DejaVu Sans Mono for Powerline";
         shell = {
           program = "bash";
+        };
+        env = {
+          TERM = "alacritty";
+        };
+      };
+      lsp = {
+        rust-analyzer = {
+          binary = {
+            # path = lib.getExe pkgs.rust-analyzer;
+            path_lookup = true;
+          };
         };
       };
     };
