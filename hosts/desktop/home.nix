@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, unstable, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -383,6 +383,7 @@
 
   programs.zed-editor = {
     enable = true;
+    package = unstable.zed-editor;
     userSettings = {
       vim_mode = true;
       terminal = {
