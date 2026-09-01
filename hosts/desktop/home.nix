@@ -241,6 +241,7 @@
     vim-full
     fastfetch
     nautilus # File manager
+    superfile
     gnome-software # flatpak Software Center
     gnome-calculator
 
