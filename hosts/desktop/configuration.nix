@@ -162,6 +162,7 @@
         gparted
         tcpdump
         proton-vpn
+        openvpn3
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
