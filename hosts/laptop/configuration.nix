@@ -192,7 +192,6 @@
         usbutils
         gparted
         proton-vpn
-        openvpn3
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -278,6 +277,11 @@
   ]; 
 
   # SECURITY and FINGERPRINT
+
+  # CWRU Vpn
+  programs.openvpn3 = {
+    enable = true;
+  };
 
   # Fingerprint Sensor
   services.fprintd.enable = true;

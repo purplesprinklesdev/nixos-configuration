@@ -162,7 +162,6 @@
         gparted
         tcpdump
         proton-vpn
-        openvpn3
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -197,6 +196,11 @@
     roboto
     helvetica-neue-lt-std
   ]; 
+
+  # CWRU Vpn
+  programs.openvpn3 = {
+    enable = true;
+  };
 
   # Router TFTP
   # If you ever need TFTP server again, this should work
