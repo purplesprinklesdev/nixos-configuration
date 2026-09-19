@@ -231,7 +231,6 @@
     vim-full
     fastfetch
     nautilus # File manager
-    nnn
     gnome-software # flatpak Software Center
     gnome-calculator
     qrrs
@@ -345,6 +344,13 @@
 
       alias open='xdg-open'
     '';
+  };
+
+  programs.nnn = {
+    enable = true;
+    options = {};
+    enableBashIntegration = true;
+    quitcd = true;
   };
 
   programs.git = {
