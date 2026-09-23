@@ -194,6 +194,14 @@
   };
   services.swaync = {
     enable = true;
+    style = ''
+      .notification-content {
+        min-height: 60px;
+        padding: 10px;
+        font-size: 18pt;
+        border: none;
+      }
+    '';
   };
 
   # Automount to External Drives
