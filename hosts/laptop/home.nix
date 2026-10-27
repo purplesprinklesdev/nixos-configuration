@@ -104,7 +104,7 @@
           # Set HIDP scale (pixel integer scaling)
           scale = "1";
           # Set res and refresh rate
-          mode = "1920x1080@165Hz";
+          mode = "1920x1080@60Hz";
         };
       };
 

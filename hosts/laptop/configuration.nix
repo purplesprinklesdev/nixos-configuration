@@ -242,6 +242,7 @@
   
   # Power efficiency
   services.power-profiles-daemon.enable = true;
+  powerManagement.powertop.enable = true;
 
   # VM
 
