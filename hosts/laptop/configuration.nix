@@ -242,7 +242,9 @@
   
   # Power efficiency
   services.power-profiles-daemon.enable = true;
-  powerManagement.powertop.enable = true;
+
+  # This kills wifi after hibernation!!! :(
+  #powerManagement.powertop.enable = true;
 
   # VM
 
